@@ -28,6 +28,9 @@ if archivo is None:
 st.image(archivo, caption="Tu foto (no se guarda)", width=200)
 
 if st.button("Revisar páginas"):
+    st.session_state["revisado"] = True
+
+if st.session_state.get("revisado"):
     resultados = pd.DataFrame(
         [
             {"Página": "Página de prueba 1", "Enlace": "http://localhost:8000/pagina1.html", "Coincidencias": 1},
@@ -38,3 +41,21 @@ if st.button("Revisar páginas"):
     st.subheader("Resultados")
     st.dataframe(resultados)
     st.caption("Solo revisamos las paginas configuradas. No garantizamos encontrar todo internet. ")
+    st.subheader("¿Qué puedes hacer ahora?")
+    tab1, tab2, tab3 = st.tabs(["1. Guarda evidencia", "2. Pide el retiro", "3. Dónde pedir ayuda"])
+
+    with tab1:
+        st.write("- Haz capturas de pantalla donde se vea el enlace, la fecha y la hora.")
+        st.write("- Copia y guarda las URLS.")
+        st.write("- No borres mensaje ni conversaciones relacionadas.")
+
+    with tab2:
+        st.text_area(
+            "Borrador de solicitud de retiro",
+            "Hola, soy [nombre]. Solicito el retiro inmediato del contenido en [enlace], publicado sin mi consentimiento. Quedo atenta a su respuesta. ",
+            height=160,
+        )
+    with tab3:
+        st.write("Línea 100: [verificar número y horario en fuente oficial]")
+        st.write("Denuncia: [verificar la vía en fuente oficial]")
+
