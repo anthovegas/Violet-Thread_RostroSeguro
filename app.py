@@ -1,6 +1,19 @@
 import streamlit as st
 import pandas as pd
 
+def buscar(foto):
+    """Revisa las paginas y devuelve una tabla de resultados.
+
+    Por ahora devuelve datos FALSOS. Cuando motor.py y rastreador.py estén listos, aquí se conectan.
+    """
+    return pd.DataFrame(
+            [
+                {"Página": "Página de prueba 1", "Enlace": "http://localhost:8000/pagina1.html", "Coincidencias": 1},
+                {"Página": "Página de prueba 2", "Enlace": "http://localhost:8000/pagina2.html", "Coincidencias": 0},
+                {"Página": "Página de prueba 3", "Enlace": "http://localhost:8000/pagina3.html", "Coincidencias": 1}
+            ]
+    )
+
 st.title("RostroSeguro")
 st.write("No estás sola. Esta herramienta te ayuda a revisar si tu rostro aparece sin tu consetimiento.")
 
@@ -31,16 +44,11 @@ if st.button("Revisar páginas"):
     st.session_state["revisado"] = True
 
 if st.session_state.get("revisado"):
-    resultados = pd.DataFrame(
-        [
-            {"Página": "Página de prueba 1", "Enlace": "http://localhost:8000/pagina1.html", "Coincidencias": 1},
-            {"Página": "Página de prueba 2", "Enlace": "http://localhost:8000/pagina2.html", "Coincidencias": 0},
-            {"Página": "Página de prueba 3", "Enlace": "http://localhost:8000/pagina3.html", "Coincidencias": 1}
-        ]
-    )
+    resultados = buscar(archivo)
     st.subheader("Resultados")
     st.dataframe(resultados)
     st.caption("Solo revisamos las paginas configuradas. No garantizamos encontrar todo internet. ")
+
     st.subheader("¿Qué puedes hacer ahora?")
     tab1, tab2, tab3 = st.tabs(["1. Guarda evidencia", "2. Pide el retiro", "3. Dónde pedir ayuda"])
 
