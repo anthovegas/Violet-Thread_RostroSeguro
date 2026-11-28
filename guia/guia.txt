@@ -1,0 +1,9 @@
+Split en dos terminales:
+
+terminal 1:
+python -m http.server 8000 --directory sitio_prueba
+
+terminal 2:
+streamlit run app.py
+
+en el sitio principal 

@@ -2,7 +2,7 @@ import numpy as np
 import face_recognition
 from PIL import Image, ImageOps
 
-UMBRAL = 0.6          # distancia máxima para decir "es la misma persona"
+UMBRAL = 0.35          # distancia máxima para decir "es la misma persona"
 TAMANO_MINIMO = 40    # imágenes más chicas que esto (en píxeles) no sirven
 TAMANO_MAXIMO = 1600  # imágenes más grandes se reducen para ir más rápido
 
